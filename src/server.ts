@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import app from "./app";
 
 import { envVars } from "./app/config/env";
+const port = envVars.PORT;
 
 let server: Server;
 
@@ -13,7 +14,7 @@ const statServer = async () => {
   try {
     await mongoose.connect(envVars.DB_URL as string);
     console.log("connection to BD via mongoose!!");
-    server = app.listen(envVars.PORT, () => {
+    server = app.listen(port, () => {
       console.log(`sever is listening on to port on ${envVars.PORT}`);
     });
   } catch (error) {
